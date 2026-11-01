@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verbos 21–40 · Домашка для Ивана</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500&family=Poppins:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--terra:#C65D3B;--terra-l:#F3D9CC;--indigo:#2E3A6E;--indigo-l:#DDE1F0;--cream:#FBF5EC;--card:#FFFDF9;--ink:#2B2620;--muted:#7A6F63;--ok:#2F8F5B;--ok-l:#D8F0E2;--bad:#C0392B;--bad-l:#F8DAD5;--warn:#B7791F;--warn-l:#FCEFD6;--line:#E8DDCD}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Poppins,system-ui,sans-serif;font-size:16px;line-height:1.55}
+h1,h2,h3{font-family:Lora,Georgia,serif;color:var(--indigo);line-height:1.25;margin:.2em 0 .5em}
+h1{font-size:2rem}h2{font-size:1.55rem}h3{font-size:1.15rem}
+a{color:var(--terra)}
+.wrap{max-width:980px;margin:0 auto;padding:18px 16px 80px}
+header.top{background:var(--indigo);color:#fff;padding:22px 16px 16px}
+header.top .in{max-width:980px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+header.top h1{color:#fff;margin:0;font-size:1.7rem}
+header.top .sub{opacity:.85;font-size:.92rem}
+.xp{background:var(--terra);color:#fff;border-radius:999px;padding:6px 14px;font-weight:600;white-space:nowrap}
+nav.steps{position:sticky;top:0;z-index:5;background:var(--cream);border-bottom:1px solid var(--line);overflow-x:auto}
+nav.steps .in{max-width:980px;margin:0 auto;display:flex;gap:6px;padding:10px 16px}
+nav.steps button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;color:var(--ink)}
+nav.steps button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+nav.steps button.done::after{content:" ✓";color:var(--ok);font-weight:700}
+nav.steps button.on.done::after{color:#bff0d2}
+section.step{display:none}section.step.on{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 2px 0 rgba(0,0,0,.03)}
+.tip{background:var(--indigo-l);border-left:5px solid var(--indigo);border-radius:12px;padding:14px 16px;margin:14px 0}
+.task{background:var(--terra-l);border-left:5px solid var(--terra);border-radius:12px;padding:14px 16px;margin:14px 0}
+.task b.lbl,.tip b.lbl{display:block;font-family:Lora,serif;font-size:1.05rem;margin-bottom:4px}
+.muted{color:var(--muted);font-size:.9rem}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--terra);color:#fff;font:inherit;font-weight:600;padding:10px 18px;border-radius:12px;cursor:pointer;margin:4px 4px 4px 0}
+.btn:hover{filter:brightness(1.07)}.btn.sec{background:var(--indigo)}.btn.ghost{background:transparent;color:var(--indigo);border:1.5px solid var(--indigo)}
+.btn.sm{padding:6px 11px;font-size:.85rem;border-radius:9px}
+.btn:disabled{opacity:.45;cursor:default}
+.next{display:flex;justify-content:flex-end;margin-top:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.vcard{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px;text-align:center;cursor:pointer;position:relative;transition:.15s}
+.vcard:hover{border-color:var(--terra);transform:translateY(-2px)}
+.vcard .em{font-size:2.3rem;line-height:1.2}
+.vcard .es{font-family:Lora,serif;font-weight:700;color:var(--indigo);font-size:1.08rem}
+.vcard .ru{font-size:.82rem;color:var(--muted)}
+.vcard.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(30,30,50,.5);display:none;align-items:center;justify-content:center;z-index:20;padding:14px}
+.modal.on{display:flex}
+.modal .m{background:var(--card);border-radius:18px;max-width:520px;width:100%;padding:22px;max-height:92vh;overflow:auto}
+.modal .em{font-size:3.4rem;text-align:center}
+.links a{display:inline-block;margin:3px 8px 3px 0;font-size:.88rem}
+.conj{width:100%;border-collapse:collapse;margin:8px 0;font-size:.95rem}
+.conj td,.conj th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+.conj th{color:var(--muted);font-weight:500;font-size:.85rem}
+.conj .irr{color:var(--terra);font-weight:600}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:600}
+.p-reg{background:var(--ok-l);color:var(--ok)}.p-irr{background:var(--terra-l);color:var(--terra)}.p-refl{background:var(--indigo-l);color:var(--indigo)}
+input[type=text],textarea,select{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink);width:100%}
+input[type=text]:focus,textarea:focus,select:focus{outline:none;border-color:var(--indigo)}
+textarea{min-height:150px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px;min-height:44px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;cursor:pointer;font-weight:500;user-select:none}
+.chip.sel{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.chip.ok{background:var(--ok-l);border-color:var(--ok);color:var(--ok)}
+.chip.bad{background:var(--bad-l);border-color:var(--bad);color:var(--bad);animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.baskets{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:12px}
+.basket{border:2px dashed var(--line);border-radius:14px;padding:10px;min-height:120px;cursor:pointer;background:#fff}
+.basket:hover{border-color:var(--terra)}
+.basket h4{margin:0 0 8px;font-family:Lora,serif;color:var(--indigo)}
+.fc-wrap{display:flex;flex-direction:column;align-items:center}
+.fc{width:min(420px,100%);min-height:250px;perspective:1000px;margin:10px 0}
+.fc .inner{position:relative;width:100%;min-height:250px;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .inner{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;background:var(--card);border:2px solid var(--indigo);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;text-align:center}
+.fc .back{transform:rotateY(180deg);border-color:var(--terra)}
+.fc .big{font-size:3.6rem}
+.fc .w{font-family:Lora,serif;font-size:1.7rem;color:var(--indigo);font-weight:700}
+.rate{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.rate .btn.r0{background:var(--bad)}.rate .btn.r1{background:var(--warn)}.rate .btn.r2{background:var(--ok)}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;width:min(420px,100%)}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.endtbl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.endtbl .col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+.endtbl .col h4{margin:0 0 6px;font-family:Lora,serif;color:var(--terra)}
+.endtbl .col div{display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding:2px 0}
+.endtbl .col b{color:var(--terra)}
+.cons-row{display:grid;grid-template-columns:150px auto 130px 40px;justify-content:start;gap:8px;align-items:center;margin:6px 0}
+.stem{font-family:Lora,serif;font-weight:700;color:var(--indigo);font-size:1.1rem;text-align:right}
+.boot{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:440px;margin:10px 0}
+.boot div{border-radius:10px;padding:8px 10px;font-size:.95rem}
+.boot .in{background:var(--terra-l);border:2px solid var(--terra)}
+.boot .out{background:#f1ede6;border:2px dashed #bbb;color:#555}
+.boot .lab{font-size:.75rem;color:var(--muted);display:block}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.tabs button{border:1.5px solid var(--indigo);background:#fff;color:var(--indigo);border-radius:9px;padding:5px 11px;font:inherit;font-size:.88rem;cursor:pointer}
+.tabs button.on{background:var(--indigo);color:#fff}
+.tr-q{font-size:1.3rem;text-align:center;margin:8px 0}
+.tr-q .per{color:var(--terra);font-weight:600}.tr-q .inf{font-family:Lora,serif;font-weight:700;color:var(--indigo)}
+.acc{display:flex;gap:5px;justify-content:center;margin:6px 0;flex-wrap:wrap}
+.acc button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:4px 10px;font:inherit;cursor:pointer}
+.fb{border-radius:12px;padding:10px 14px;margin:10px 0;display:none}
+.fb.on{display:block}.fb.ok{background:var(--ok-l);color:#1d5e3b}.fb.bad{background:var(--bad-l);color:#7a2219}.fb.warn{background:var(--warn-l);color:#7a5210}
+.dlg p{margin:6px 0}.dlg select{width:auto;display:inline-block;padding:4px 8px;margin:0 3px}
+.dlg select.ok{border-color:var(--ok);background:var(--ok-l)}.dlg select.bad{border-color:var(--bad);background:var(--bad-l)}
+.riddle{border-bottom:1px solid var(--line);padding:10px 0}
+.riddle .opts{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.me-q{border-bottom:1px solid var(--line);padding:12px 0}
+.me-q .q{font-weight:600}.me-q .qru{color:var(--muted);font-size:.85rem}
+.me-q .res{font-size:.88rem;margin-top:4px}
+.found{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.found span{background:var(--ok-l);color:var(--ok);border-radius:999px;padding:2px 10px;font-size:.85rem;font-weight:600}
+.preview{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;min-height:60px;white-space:pre-wrap}
+.preview mark{background:var(--terra-l);color:var(--terra);font-weight:600;border-radius:4px;padding:0 2px}
+.meter{display:flex;gap:16px;flex-wrap:wrap;font-weight:600;margin:6px 0}
+.meter .okc{color:var(--ok)}.meter .no{color:var(--bad)}
+.check label{display:block;padding:5px 0;cursor:pointer}
+.stars{font-size:1.8rem;cursor:pointer;user-select:none}.stars span{color:#ccc}.stars span.on{color:#E6A700}
+pre.report{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font-family:Poppins,sans-serif;font-size:.88rem;max-height:420px;overflow:auto}
+.plan{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.plan .d{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.plan .d h3{margin:0 0 6px;color:var(--terra)}
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:10px 0}
+.method div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.method .n{display:inline-block;width:30px;height:30px;line-height:30px;border-radius:50%;background:var(--terra);color:#fff;font-weight:700;margin-bottom:4px}
+.method b{display:block;color:var(--indigo);font-family:Lora,serif}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--indigo);color:#fff;padding:10px 18px;border-radius:12px;opacity:0;transition:.3s;z-index:30;pointer-events:none}
+.toast.on{opacity:1}
+@media(max-width:600px){h1{font-size:1.5rem}.cons-row{grid-template-columns:95px 1fr 80px 30px;font-size:.9rem}}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <div><h1>¡Hola, Iván! · Verbos 21–40</h1>
+  <div class="sub">Домашка: учимся <b>сами</b> запоминать, спрягать и использовать глаголы · Presente</div></div>
+  <div class="xp" id="xp">⭐ 0 XP</div>
+</div></header>
+<nav class="steps"><div class="in" id="nav"></div></nav>
+
+<div class="wrap">
+
+<!-- STEP 0 -->
+<section class="step" data-s="0">
+  <h2>Как устроена эта домашка</h2>
+  <p>Здесь 20 новых глаголов. Цель не в том, чтобы один раз их прочитать. Цель в том, чтобы научиться <b>способу</b>: как самому выучить любой глагол и потом им пользоваться. Этот способ пригодится и для следующих списков.</p>
+  <h3>5 шагов к глаголу, который не забывается</h3>
+  <div class="method">
+    <div><span class="n">1</span><b>Вижу и слышу</b><span class="muted">картинка + звук + перевод</span></div>
+    <div><span class="n">2</span><b>Связываю</b><span class="muted">свой жест или ассоциация</span></div>
+    <div><span class="n">3</span><b>Вспоминаю</b><span class="muted">закрываю ответ и вспоминаю сам</span></div>
+    <div><span class="n">4</span><b>Спрягаю</b><span class="muted">основа + окончание, проверяю «ловушки»</span></div>
+    <div><span class="n">5</span><b>Использую</b><span class="muted">говорю и пишу о своей жизни</span></div>
+  </div>
+  <div class="tip"><b class="lbl">💡 Почему делаем не всё за один раз</b>
+  Мозг лучше запоминает, когда к словам возвращаешься через паузу. Поэтому домашку лучше сделать за <b>3 коротких подхода по 20–25 минут</b>. Флешкарты каждый раз показывают в первую очередь те глаголы, которые ты пока плохо помнишь.</div>
+  <div class="plan">
+    <div class="d"><h3>День 1</h3>Шаги 1–4: знакомство, сортировка, флешкарты, правило спряжения.</div>
+    <div class="d"><h3>День 2</h3>Флешкарты ещё раз (только «трудные»), затем шаги 5–6: тренажёр и задания.</div>
+    <div class="d"><h3>День 3</h3>Флешкарты на скорость, затем шаг 7: свой текст и отчёт учителю.</div>
+  </div>
+  <p class="muted">Прогресс сохраняется в этом браузере. Если откроешь страницу с другого устройства, начнёшь заново. Оригинал урока: <a href="https://www.profedeele.es/actividad/verbos-ilustrados-21-40/" target="_blank" rel="noopener">profedeele.es · Verbos ilustrados 21–40</a></p>
+  <div class="next"><button class="btn" onclick="go(1)">Начать →</button></div>
+</section>
+
+<!-- STEP 1 -->
+<section class="step" data-s="1">
+  <h2>Шаг 1. Вижу, слышу, связываю</h2>
+  <div class="task"><b class="lbl">✍️ Задание</b>
+  Открой <b>каждую</b> карточку. Для каждого глагола:<br>
+  1) нажми 🔊 и повтори вслух 3 раза;<br>
+  2) прочитай пример;<br>
+  3) придумай <b>свой жест</b> (покажи руками) или <b>ассоциацию</b> и запиши её. Например: <i>volar</i> — «в-ОЛ-ар, вол летит» 🐂✈️. Чем смешнее, тем лучше запоминается.</div>
+  <div class="meter">Открыто: <span id="seenC">0</span>/20 · Ассоциаций: <span id="assC">0</span></div>
+  <div class="grid" id="vgrid"></div>
+  <div class="tip"><b class="lbl">🔎 Как проверить глагол самому</b>
+  В каждой карточке есть ссылки. <b>WordReference</b> показывает полное спряжение, и неправильные формы там обычно выделены цветом. <b>Forvo</b> даёт произношение носителей. Так ты сможешь сам разобрать любой новый глагол, даже без учителя.</div>
+  <div class="next"><button class="btn" onclick="go(2)">Дальше →</button></div>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" data-s="2">
+  <h2>Шаг 2. Сортировка: глагол-детектив</h2>
+  <p>Перед тем как учить глагол, полезно понять, <b>к какой группе</b> он относится. Тогда спрягать будет проще.</p>
+  <div class="box">
+    <h3>Раунд 1. На что заканчивается?</h3>
+    <p class="muted">Нажми на глагол, потом на корзину. Возвратные (-se) сортируй по букве перед -se: despert<b>ar</b>se → -ar.</p>
+    <div class="chips" id="sort1pool"></div>
+    <div class="baskets" id="sort1b"></div>
+    <button class="btn sec" onclick="checkSort(1)">Проверить</button>
+    <div class="fb" id="sort1fb"></div>
+  </div>
+  <div class="box">
+    <h3>Раунд 2. Правильный или с «ловушкой»?</h3>
+    <p class="muted">Посмотри на подсказку: формы <b>yo</b> и <b>nosotros</b>. Если в <b>yo</b> корень поменялся, это ловушка.</p>
+    <div class="chips" id="sort2pool"></div>
+    <div class="baskets" id="sort2b"></div>
+    <button class="btn sec" onclick="checkSort(2)">Проверить</button>
+    <div class="fb" id="sort2fb"></div>
+  </div>
+  <div class="next"><button class="btn" onclick="go(3)">Дальше →</button></div>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" data-s="3">
+  <h2>Шаг 3. Флешкарты: вспоминаю сам</h2>
+  <div class="tip"><b class="lbl">💡 Главное правило</b>
+  Сначала <b>честно попробуй вспомнить</b>: скажи вслух или напиши. Только потом переворачивай карточку. Попытка вспомнить и есть тренировка памяти. Карточки с оценкой «не знал» вернутся к тебе через пару шагов.</div>
+  <div class="tabs" id="fcmode">
+    <button data-m="ru" class="on">🇷🇺 → 🇪🇸</button>
+    <button data-m="es">🇪🇸 → 🇷🇺</button>
+    <button data-m="yo">Скажи форму «yo»</button>
+  </div>
+  <div class="tabs" id="fcset">
+    <button data-k="all" class="on">Все 20</button>
+    <button data-k="hard">Только трудные</button>
+  </div>
+  <div class="fc-wrap">
+    <div class="bar"><i id="fcbar"></i></div>
+    <div class="muted" id="fcinfo"></div>
+    <div class="fc" id="fc"><div class="inner">
+      <div class="face front" id="fcfront"></div>
+      <div class="face back" id="fcback"></div>
+    </div></div>
+    <input type="text" id="fcin" placeholder="Можешь написать ответ (необязательно)" style="max-width:420px">
+    <div style="margin:8px 0"><button class="btn sec" id="fcflip">Перевернуть</button></div>
+    <div class="rate" id="fcrate" style="display:none">
+      <button class="btn r0" data-r="0">😕 Не знал</button>
+      <button class="btn r1" data-r="1">🤔 Сомневался</button>
+      <button class="btn r2" data-r="2">😎 Знал</button>
+    </div>
+  </div>
+  <div class="fb" id="fcdone"></div>
+  <div class="next"><button class="btn" onclick="go(4)">Дальше →</button></div>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" data-s="4">
+  <h2>Шаг 4. Как спрягать: формула + ловушки</h2>
+  <div class="box">
+    <h3>Формула правильного глагола</h3>
+    <p><b>основа</b> (убираем -ar / -er / -ir) + <b>окончание</b> по лицу.<br>viaj<s>ar</s> → <b>viaj</b> + o = <b>viajo</b> (я путешествую)</p>
+    <div class="endtbl">
+      <div class="col"><h4>-AR · viajar</h4><div>yo<b>-o</b></div><div>tú<b>-as</b></div><div>él/ella/usted<b>-a</b></div><div>nosotros<b>-amos</b></div><div>vosotros<b>-áis</b></div><div>ellos/ustedes<b>-an</b></div></div>
+      <div class="col"><h4>-ER · beber</h4><div>yo<b>-o</b></div><div>tú<b>-es</b></div><div>él/ella/usted<b>-e</b></div><div>nosotros<b>-emos</b></div><div>vosotros<b>-éis</b></div><div>ellos/ustedes<b>-en</b></div></div>
+      <div class="col"><h4>-IR · compartir</h4><div>yo<b>-o</b></div><div>tú<b>-es</b></div><div>él/ella/usted<b>-e</b></div><div>nosotros<b>-imos</b></div><div>vosotros<b>-ís</b></div><div>ellos/ustedes<b>-en</b></div></div>
+    </div>
+    <p class="muted">Лайфхак: у -er и -ir почти всё одинаково. Разница только в <b>nosotros</b> (-emos / -imos) и <b>vosotros</b> (-éis / -ís).</p>
+  </div>
+  <div class="box">
+    <h3>🔧 Конструктор: собери форму сам</h3>
+    <p class="muted">Выбери глагол и подбери окончание для каждого лица.</p>
+    <div class="tabs" id="consTabs"></div>
+    <div id="cons"></div>
+    <button class="btn sec" onclick="checkCons()">Проверить</button>
+    <div class="fb" id="consfb"></div>
+  </div>
+  <div class="box">
+    <h3>👢 Ловушка 1: глаголы-«ботинки»</h3>
+    <p>У некоторых глаголов <b>внутри корня меняется гласная</b>, но не во всех лицах. Если нарисовать таблицу, изменённые формы складываются в форму <b>ботинка</b>. Nosotros и vosotros остаются снаружи, у них корень не меняется.</p>
+    <div class="tabs" id="bootTabs"></div>
+    <div class="boot" id="boot"></div>
+    <p class="muted" id="bootNote"></p>
+  </div>
+  <div class="box">
+    <h3>🎭 Ловушка 2: особая форма «yo»</h3>
+    <p>У этих глаголов странная только форма <b>yo</b>, всё остальное правильное:</p>
+    <table class="conj"><tr><th>глагол</th><th>yo</th><th>tú</th><th>él</th><th>nosotros</th></tr>
+      <tr><td>conducir</td><td class="irr">conduzco</td><td>conduces</td><td>conduce</td><td>conducimos</td></tr>
+      <tr><td>valer</td><td class="irr">valgo</td><td>vales</td><td>vale</td><td>valemos</td></tr></table>
+    <p class="muted">Особый случай: <b>sonreír</b> → sonrío, sonríes, sonríe, sonreímos, sonreís, sonríen (ударение на í).</p>
+  </div>
+  <div class="box">
+    <h3>🪞 Ловушка 3: возвратные глаголы (-se)</h3>
+    <p>Если глагол заканчивается на <b>-se</b>, действие направлено на себя. Перед формой ставим маленькое слово:</p>
+    <table class="conj"><tr><th>лицо</th><th>местоимение</th><th>vestirse (одеваться)</th></tr>
+      <tr><td>yo</td><td><b>me</b></td><td>me visto</td></tr><tr><td>tú</td><td><b>te</b></td><td>te vistes</td></tr>
+      <tr><td>él/ella</td><td><b>se</b></td><td>se viste</td></tr><tr><td>nosotros</td><td><b>nos</b></td><td>nos vestimos</td></tr>
+      <tr><td>vosotros</td><td><b>os</b></td><td>os vestís</td></tr><tr><td>ellos</td><td><b>se</b></td><td>se visten</td></tr></table>
+    <p class="muted">Запомни цепочку: <b>me – te – se – nos – os – se</b>. Повтори её вслух 3 раза.</p>
+  </div>
+  <div class="next"><button class="btn" onclick="go(5)">Дальше →</button></div>
+</section>
+
+<!-- STEP 5 -->
+<section class="step" data-s="5">
+  <h2>Шаг 5. Тренажёр спряжения</h2>
+  <div class="tip"><b class="lbl">💡 Алгоритм для каждой формы</b>
+  1) Какое окончание у глагола: -ar, -er или -ir? 2) Есть ли ловушка: ботинок, «yo» или -se? 3) Основа + окончание. 4) Скажи вслух.<br>
+  Застрял? Нажми <b>ⓘ Подсказка</b>, но сначала попробуй сам.</div>
+  <div class="box">
+    <div class="bar" style="margin:0 auto"><i id="trbar"></i></div>
+    <div class="muted" style="text-align:center" id="trinfo"></div>
+    <div class="tr-q" id="trq"></div>
+    <input type="text" id="trin" placeholder="Напиши форму…" autocomplete="off" style="max-width:360px;display:block;margin:0 auto;text-align:center;font-size:1.15rem">
+    <div class="acc" id="tracc"></div>
+    <div style="text-align:center">
+      <button class="btn ghost sm" id="trhint">ⓘ Подсказка</button>
+      <button class="btn" id="trcheck">Проверить</button>
+      <button class="btn sec" id="trnext" style="display:none">Следующий →</button>
+    </div>
+    <div class="fb" id="trfb"></div>
+  </div>
+  <div class="fb" id="trdone"></div>
+  <div class="next"><button class="btn ghost" onclick="startTrainer()">Начать заново</button><button class="btn" onclick="go(6)">Дальше →</button></div>
+</section>
+
+<!-- STEP 6 -->
+<section class="step" data-s="6">
+  <h2>Шаг 6. Использую глаголы</h2>
+  <div class="box">
+    <h3>A. Диалоги: выбери правильную форму</h3>
+    <p class="muted">Внимание: в вариантах есть «ловушки», то есть формы без смены корня или без me/te/se.</p>
+    <div class="dlg" id="dlg"></div>
+    <button class="btn sec" onclick="checkDlg()">Проверить</button>
+    <div class="fb" id="dlgfb"></div>
+  </div>
+  <div class="box">
+    <h3>B. Загадки: какой это глагол?</h3>
+    <p class="muted">Прочитай по-испански. Если не понятно, нажми «перевод».</p>
+    <div id="rid"></div>
+    <div class="fb" id="ridfb"></div>
+  </div>
+  <div class="box">
+    <h3>C. Про меня: отвечаю полным предложением</h3>
+    <p class="muted">Отвечай о своей настоящей жизни: так глаголы запоминаются лучше всего. Страница проверит, правильно ли ты спряг глагол.</p>
+    <div id="meq"></div>
+    <button class="btn sec" onclick="checkMe()">Проверить</button>
+    <div class="fb" id="mefb"></div>
+  </div>
+  <div class="next"><button class="btn" onclick="go(7)">Дальше →</button></div>
+</section>
+
+<!-- STEP 7 -->
+<section class="step" data-s="7">
+  <h2>Шаг 7. Мой текст + отчёт учителю</h2>
+  <div class="task"><b class="lbl">✍️ Финальное задание</b>
+  Напиши рассказ <b>«Mi día»</b> (мой день) или диалог. Условия: не меньше <b>40 слов</b> и не меньше <b>6 разных глаголов</b> из урока в настоящем времени. Можно писать не только о себе, но и о семье или друзьях: <i>mi padre conduce…, mis amigos y yo corremos…</i></div>
+  <div class="tip"><b class="lbl">🧩 Опоры</b>
+  Por la mañana… · Después… · A las ocho… · Por la tarde… · Los fines de semana… · Siempre / A veces / Nunca… · Con mi familia…</div>
+  <textarea id="txt" placeholder="Por la mañana me despierto a las siete…"></textarea>
+  <div class="meter"><span id="wc">Слов: 0</span><span id="vc">Глаголов: 0</span></div>
+  <div class="found" id="found"></div>
+  <p class="muted">Глаголы из урока подсвечиваются в превью. Если глагол не подсветился, проверь форму: возможно, ошибка в спряжении.</p>
+  <div class="preview" id="prev"></div>
+  <div class="box check">
+    <h3>Проверь себя перед отправкой</h3>
+    <label><input type="checkbox" class="se"> Каждый глагол стоит в форме нужного лица (yo → -o, él → -a/-e…)</label>
+    <label><input type="checkbox" class="se"> Я проверил ловушки: ботинок (ue/ie/i), «yo» (conduzco, valgo)</label>
+    <label><input type="checkbox" class="se"> У возвратных глаголов есть me/te/se</label>
+    <label><input type="checkbox" class="se"> Я прочитал свой текст вслух</label>
+    <p style="margin:10px 0 0">Как ты оцениваешь свой текст?</p>
+    <div class="stars" id="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+    <p style="margin:10px 0 4px">Какие 3 глагола для тебя самые трудные?</p>
+    <input type="text" id="hard3" placeholder="например: sonreír, vestirse, conducir">
+  </div>
+  <div class="box">
+    <h3>📩 Отчёт учителю</h3>
+    <p>Нажми <b>«Отправить учителю»</b>, и отчёт сразу придёт Ульяне в Telegram. Если не получится, нажми «Скопировать» и пришли отчёт сообщением.</p>
+    <button class="btn" id="sendBtn" onclick="sendReport()">📩 Отправить учителю</button>
+    <button class="btn sec" onclick="buildReport(true)">📋 Скопировать</button>
+    <button class="btn ghost" onclick="buildReport(false)">Обновить</button>
+    <pre class="report" id="report"></pre>
+  </div>
+  <div class="tip"><b class="lbl">🎒 Как учить любые новые глаголы самому (сохрани себе)</b>
+  1. Рассортируй: -ar / -er / -ir и есть ли -se.<br>
+  2. Открой спряжение на WordReference: меняется ли корень в <b>yo</b>? Тогда это ловушка.<br>
+  3. Послушай на Forvo и скажи вслух yo – tú – él.<br>
+  4. Придумай жест или смешную ассоциацию.<br>
+  5. Составь 1 фразу <b>про себя</b> с каждым глаголом.<br>
+  6. Повтори через 1 день, через 3 дня и через неделю: сначала вспоминай, потом проверяй.</div>
+</section>
+
+</div>
+
+<div class="modal" id="modal"><div class="m" id="mbody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const P=['yo','tú','él / ella / usted','nosotros','vosotros','ellos / ustedes'];
+const PS=['yo','tú','él','nosotros','vosotros','ellos'];
+const RP=['me','te','se','nos','os','se'];
+const V=[
+{v:'aprobar',ru:'сдать (экзамен)',e:'📝✅',g:'ar',t:'ue',f:['apruebo','apruebas','aprueba','aprobamos','aprobáis','aprueban'],ex:'Siempre apruebo el examen de inglés.',exru:'Я всегда сдаю экзамен по английскому.'},
+{v:'beber',ru:'пить',e:'🥤',g:'er',t:'reg',f:['bebo','bebes','bebe','bebemos','bebéis','beben'],ex:'Por la mañana bebo zumo de naranja.',exru:'Утром я пью апельсиновый сок.'},
+{v:'compartir',ru:'делиться',e:'🍕🤝',g:'ir',t:'reg',f:['comparto','compartes','comparte','compartimos','compartís','comparten'],ex:'Comparto la pizza con mi hermano.',exru:'Я делюсь пиццей с братом.'},
+{v:'conducir',ru:'водить (машину)',e:'🚗',g:'ir',t:'yo',f:['conduzco','conduces','conduce','conducimos','conducís','conducen'],ex:'Mi padre conduce muy bien.',exru:'Мой папа очень хорошо водит.'},
+{v:'correr',ru:'бегать',e:'🏃',g:'er',t:'reg',f:['corro','corres','corre','corremos','corréis','corren'],ex:'Corro en el parque los sábados.',exru:'Я бегаю в парке по субботам.'},
+{v:'despertarse',ru:'просыпаться',e:'⏰',g:'ar',t:'ie',r:1,f:['despierto','despiertas','despierta','despertamos','despertáis','despiertan'],ex:'Me despierto a las siete.',exru:'Я просыпаюсь в семь.'},
+{v:'enamorarse',ru:'влюбляться',e:'😍',g:'ar',t:'reg',r:1,f:['enamoro','enamoras','enamora','enamoramos','enamoráis','enamoran'],ex:'En la película, el chico se enamora de la chica.',exru:'В фильме парень влюбляется в девушку.'},
+{v:'enfadarse',ru:'злиться',e:'😠',g:'ar',t:'reg',r:1,f:['enfado','enfadas','enfada','enfadamos','enfadáis','enfadan'],ex:'Mi madre se enfada cuando no estudio.',exru:'Мама злится, когда я не учусь.'},
+{v:'pesarse',ru:'взвешиваться',e:'⚖️',g:'ar',t:'reg',r:1,f:['peso','pesas','pesa','pesamos','pesáis','pesan'],ex:'Me peso una vez a la semana.',exru:'Я взвешиваюсь раз в неделю.'},
+{v:'robar',ru:'красть',e:'🦹',g:'ar',t:'reg',f:['robo','robas','roba','robamos','robáis','roban'],ex:'El ladrón roba una bicicleta.',exru:'Вор крадёт велосипед.'},
+{v:'saludar',ru:'здороваться',e:'👋',g:'ar',t:'reg',f:['saludo','saludas','saluda','saludamos','saludáis','saludan'],ex:'Saludo a mi profesor: «¡Hola!»',exru:'Я здороваюсь с учителем: «Привет!»'},
+{v:'secar',ru:'сушить, вытирать',e:'🌬️',g:'ar',t:'reg',f:['seco','secas','seca','secamos','secáis','secan'],ex:'Seco los platos después de comer.',exru:'Я вытираю тарелки после еды.'},
+{v:'servir',ru:'подавать (еду)',e:'🍽️',g:'ir',t:'i',f:['sirvo','sirves','sirve','servimos','servís','sirven'],ex:'El camarero sirve la comida.',exru:'Официант подаёт еду.'},
+{v:'sonar',ru:'звенеть, звучать',e:'🔔',g:'ar',t:'ue',f:['sueno','suenas','suena','sonamos','sonáis','suenan'],ex:'El despertador suena a las siete.',exru:'Будильник звонит в семь.'},
+{v:'sonreír',ru:'улыбаться',e:'😊',g:'ir',t:'esp',f:['sonrío','sonríes','sonríe','sonreímos','sonreís','sonríen'],ex:'Mi abuela siempre sonríe.',exru:'Моя бабушка всегда улыбается.'},
+{v:'unir',ru:'соединять',e:'🔗',g:'ir',t:'reg',f:['uno','unes','une','unimos','unís','unen'],ex:'Uno las piezas del puzle.',exru:'Я соединяю детали пазла.'},
+{v:'valer',ru:'стоить',e:'💶',g:'er',t:'yo',f:['valgo','vales','vale','valemos','valéis','valen'],ex:'¿Cuánto vale este helado?',exru:'Сколько стоит это мороженое?'},
+{v:'vestirse',ru:'одеваться',e:'👕',g:'ir',t:'i',r:1,f:['visto','vistes','viste','vestimos','vestís','visten'],ex:'Me visto rápido por la mañana.',exru:'Утром я быстро одеваюсь.'},
+{v:'viajar',ru:'путешествовать',e:'✈️🧳',g:'ar',t:'reg',f:['viajo','viajas','viaja','viajamos','viajáis','viajan'],ex:'En verano viajo con mi familia.',exru:'Летом я путешествую с семьёй.'},
+{v:'volar',ru:'летать',e:'🕊️',g:'ar',t:'ue',f:['vuelo','vuelas','vuela','volamos','voláis','vuelan'],ex:'Los pájaros vuelan alto.',exru:'Птицы летают высоко.'}
+];
+const TYPE={reg:'правильный',ue:'ботинок o → ue',ie:'ботинок e → ie',i:'ботинок e → i',yo:'особая форма yo',esp:'особый: sonrío'};
+const HINT={reg:'Правильный глагол: основа + окончание. Убери -ar/-er/-ir и добавь окончание лица.',
+ue:'Ботинок o → ue: в yo, tú, él, ellos «o» в корне превращается в «ue» (volar → vuelo). В nosotros/vosotros корень НЕ меняется.',
+ie:'Ботинок e → ie: в yo, tú, él, ellos «e» превращается в «ie» (despertar → despierto). В nosotros/vosotros корень НЕ меняется.',
+i:'Ботинок e → i: в yo, tú, él, ellos «e» превращается в «i» (servir → sirvo). В nosotros/vosotros корень НЕ меняется.',
+yo:'Особая только форма yo: conducir → conduzco, valer → valgo. Остальные лица правильные.',
+esp:'sonreír: sonrío, sonríes, sonríe, sonreímos, sonreís, sonríen. Ударение на í!'};
+const full=(o,p)=>(o.r?RP[p]+' ':'')+o.f[p];
+const strip=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'');
+const norm=s=>s.toLowerCase().replace(/[¡!¿?.,;:«»"]/g,' ').replace(/\s+/g,' ').trim();
+const PRON=/^(yo|tu|tú|el|él|ella|usted|nosotros|nosotras|vosotros|vosotras|ellos|ellas|ustedes)\s+/;
+function regForm(o,p){const base=o.v.replace(/se$/,'').replace(/í/,'i');const st=base.slice(0,-2);const E={ar:['o','as','a','amos','áis','an'],er:['o','es','e','emos','éis','en'],ir:['o','es','e','imos','ís','en']}[o.g];return (o.r?RP[p]+' ':'')+st+E[p];}
+
+// ---- state
+let S={step:0,done:{},seen:{},ass:{},box:{},xp:0,scores:{},text:'',self:[],stars:0,hard3:''};
+try{const s=JSON.parse(localStorage.getItem('ivan_v2140')||'null');if(s)S=Object.assign(S,s);}catch(e){}
+function save(){try{localStorage.setItem('ivan_v2140',JSON.stringify(S));}catch(e){}}
+function addXP(n){S.xp+=n;document.getElementById('xp').textContent='⭐ '+S.xp+' XP';save();}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');setTimeout(()=>el.classList.remove('on'),1800);}
+function mark(i){if(!S.done[i]){S.done[i]=1;addXP(20);}renderNav();save();}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='es-ES';u.rate=.85;const vs=speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.startsWith('es'));if(vs.length)u.voice=vs.find(v=>v.lang==='es-ES')||vs[0];speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){toast('Звук не работает: открой Forvo');}}
+
+// ---- nav
+const NAMES=['Старт','1 · Вижу','2 · Сортировка','3 · Флешкарты','4 · Спряжение','5 · Тренажёр','6 · Использую','7 · Мой текст'];
+function renderNav(){const n=document.getElementById('nav');n.innerHTML='';NAMES.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;if(i===S.step)b.className='on';if(S.done[i])b.classList.add('done');b.onclick=()=>go(i);n.appendChild(b);});}
+function go(i){if(S.step===0&&i>0)mark(0);S.step=i;document.querySelectorAll('.step').forEach(s=>s.classList.toggle('on',+s.dataset.s===i));renderNav();save();window.scrollTo({top:0,behavior:'smooth'});if(i===7)buildReport(false);}
+
+// ---- step 1
+function renderGrid(){const g=document.getElementById('vgrid');g.innerHTML='';V.forEach((o,i)=>{const d=document.createElement('div');d.className='vcard'+(S.seen[i]?' seen':'');d.innerHTML=`<div class="em">${o.e}</div><div class="es">${o.v}</div><div class="ru">${o.ru}</div>`;d.onclick=()=>openCard(i);g.appendChild(d);});
+document.getElementById('seenC').textContent=Object.keys(S.seen).length;document.getElementById('assC').textContent=Object.values(S.ass).filter(x=>x&&x.trim()).length;
+if(Object.keys(S.seen).length>=20)mark(1);}
+let curCard=null;
+function openCard(i){curCard=i;const o=V[i];S.seen[i]=1;save();const irr=o.t!=='reg';
+const rows=o.f.map((f,p)=>{const isIrr=irr&&strip(full(o,p))!==strip(regForm(o,p));return `<tr><td>${P[p]}</td><td class="${isIrr?'irr':''}">${full(o,p)}</td></tr>`}).join('');
+const base=o.v.replace(/í/,'i');
+document.getElementById('mbody').innerHTML=`<div class="em">${o.e}</div>
+<h2 style="text-align:center;margin:0">${o.v} <button class="btn sm sec" onclick="speak('${o.v}')">🔊</button></h2>
+<p style="text-align:center;margin:2px 0 8px">${o.ru}</p>
+<p style="text-align:center"><span class="pill ${irr?'p-irr':'p-reg'}">${TYPE[o.t]}</span> ${o.r?'<span class="pill p-refl">возвратный -se</span>':''}</p>
+<p><b>Пример:</b> ${o.ex} <button class="btn sm ghost" onclick="speak(this.dataset.t)" data-t="${o.ex.replace(/"/g,'')}">🔊</button><br><span class="muted">${o.exru}</span></p>
+<table class="conj"><tr><th>лицо</th><th>presente${irr?' · <span class="irr">цвет = ловушка</span>':''}</th></tr>${rows}</table>
+<p style="margin-bottom:4px"><b>Мой жест / ассоциация:</b></p>
+<input type="text" id="assIn" value="${(S.ass[i]||'').replace(/"/g,'&quot;')}" placeholder="например: показываю руками крылья">
+<div class="links" style="margin-top:10px">🔗 <a href="https://www.wordreference.com/conj/esverbs.aspx?v=${encodeURIComponent(base)}" target="_blank" rel="noopener">Спряжение · WordReference</a>
+<a href="https://forvo.com/word/${encodeURIComponent(base)}/#es" target="_blank" rel="noopener">Произношение · Forvo</a>
+<a href="https://dle.rae.es/${encodeURIComponent(base.replace(/se$/,''))}" target="_blank" rel="noopener">Словарь RAE</a></div>
+<div style="text-align:right;margin-top:10px"><button class="btn" onclick="closeCard(${i})">Готово ✓</button></div>`;
+document.getElementById('modal').classList.add('on');}
+function closeCard(i){const v=document.getElementById('assIn').value;if(v.trim()&&!S.ass[i])addXP(3);S.ass[i]=v;save();document.getElementById('modal').classList.remove('on');renderGrid();}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal'&&curCard!=null)closeCard(curCard);});
+
+// ---- step 2 sort
+const SORT={1:{b:[['ar','-AR'],['er','-ER'],['ir','-IR']],key:o=>o.g,label:o=>o.v},
+2:{b:[['reg','✅ Правильный'],['boot','👢 Ботинок (меняется корень)'],['yo','🎭 Особая yo / особый']],key:o=>o.t==='reg'?'reg':(['ue','ie','i'].includes(o.t)?'boot':'yo'),label:o=>`${o.v} <small>(${o.f[0]} · ${o.f[3]})</small>`}};
+let sortSel={1:null,2:null},sortPlace={1:{},2:{}};
+function renderSort(n){const pool=document.getElementById('sort'+n+'pool'),bs=document.getElementById('sort'+n+'b');pool.innerHTML='';bs.innerHTML='';
+V.forEach((o,i)=>{if(sortPlace[n][i]==null)pool.appendChild(chip(n,i));});
+SORT[n].b.forEach(([k,t])=>{const d=document.createElement('div');d.className='basket';d.innerHTML=`<h4>${t}</h4><div class="chips"></div>`;d.onclick=e=>{if(e.target.closest('.chip'))return;if(sortSel[n]!=null){sortPlace[n][sortSel[n]]=k;sortSel[n]=null;renderSort(n);}};
+V.forEach((o,i)=>{if(sortPlace[n][i]===k)d.querySelector('.chips').appendChild(chip(n,i));});bs.appendChild(d);});}
+function chip(n,i){const c=document.createElement('span');c.className='chip'+(sortSel[n]===i?' sel':'');c.innerHTML=SORT[n].label(V[i]);c.onclick=e=>{e.stopPropagation();if(sortPlace[n][i]!=null){delete sortPlace[n][i];sortSel[n]=i;}else sortSel[n]=sortSel[n]===i?null:i;renderSort(n);};return c;}
+function checkSort(n){const fb=document.getElementById('sort'+n+'fb');const placed=Object.keys(sortPlace[n]).length;
+if(placed<20){fb.className='fb on warn';fb.textContent='Разложи все 20 глаголов (осталось '+(20-placed)+').';return;}
+let ok=0;const wrong=[];V.forEach((o,i)=>{if(sortPlace[n][i]===SORT[n].key(o))ok++;else wrong.push(i);});
+S.scores['sort'+n]=ok+'/20';
+if(!wrong.length){fb.className='fb on ok';fb.textContent='🎉 Всё верно! 20/20';addXP(15);if(n===2||S.scores.sort1==='20/20'&&S.scores.sort2==='20/20')mark(2);}
+else{fb.className='fb on bad';fb.innerHTML=`Верно: ${ok}/20. Неверные вернулись наверх: ${wrong.map(i=>'<b>'+V[i].v+'</b>').join(', ')}. ${n===2?'Сравни yo и nosotros: поменялись ли буквы внутри?':''}`;wrong.forEach(i=>delete sortPlace[n][i]);renderSort(n);}save();}
+
+// ---- step 3 flashcards
+let fcMode='ru',fcSet='all',fcQ=[],fcTotal=0,fcCur=null,fcFirst={};
+function startFC(){const ids=V.map((o,i)=>i).filter(i=>fcSet==='all'||(S.box[i]??0)<2);fcQ=ids.sort(()=>Math.random()-.5);fcTotal=fcQ.length;fcFirst={};document.getElementById('fcdone').className='fb';
+if(!fcQ.length){document.getElementById('fcdone').className='fb on ok';document.getElementById('fcdone').textContent='Трудных глаголов нет! Выбери «Все 20».';}nextFC();}
+function nextFC(){const fc=document.getElementById('fc');fc.classList.remove('flip');document.getElementById('fcrate').style.display='none';document.getElementById('fcflip').style.display='';document.getElementById('fcin').value='';
+const left=new Set(fcQ).size;document.getElementById('fcbar').style.width=(fcTotal?(fcTotal-left)/fcTotal*100:100)+'%';document.getElementById('fcinfo').textContent=fcTotal?`Осталось: ${left} из ${fcTotal}`:'';
+if(!fcQ.length){fcCur=null;document.getElementById('fcfront').innerHTML='<div class="big">🏆</div><div class="w">¡Muy bien!</div>';document.getElementById('fcback').innerHTML='';document.getElementById('fcflip').style.display='none';
+if(fcTotal){const bad=Object.keys(fcFirst).filter(k=>fcFirst[k]<2).map(k=>V[k].v);const d=document.getElementById('fcdone');d.className='fb on ok';d.innerHTML='Колода пройдена! '+(bad.length?'С первого раза были трудными: <b>'+bad.join(', ')+'</b>. Завтра начни с кнопки «Только трудные».':'Все с первого раза, отлично!');S.scores.fc=`${fcTotal-bad.length}/${fcTotal} с первого раза`;addXP(15);mark(3);}return;}
+fcCur=fcQ[0];const o=V[fcCur];
+const F=document.getElementById('fcfront'),B=document.getElementById('fcback');
+if(fcMode==='ru'){F.innerHTML=`<div class="big">${o.e}</div><div style="font-size:1.3rem">${o.ru}</div><div class="muted">Как по-испански?</div>`;B.innerHTML=`<div class="w">${o.v}</div><div class="muted">yo ${full(o,0)}</div><button class="btn sm sec" onclick="event.stopPropagation();speak('${o.v}')">🔊</button>`;}
+else if(fcMode==='es'){F.innerHTML=`<div class="w">${o.v}</div><button class="btn sm sec" onclick="event.stopPropagation();speak('${o.v}')">🔊</button><div class="muted">Что значит?</div>`;B.innerHTML=`<div class="big">${o.e}</div><div style="font-size:1.3rem">${o.ru}</div>`;}
+else{F.innerHTML=`<div class="w">${o.v}</div><div class="muted">${o.ru}</div><div style="margin-top:8px">Скажи: <b>yo …</b>, <b>tú …</b>, <b>él …</b></div>`;B.innerHTML=`<div class="w" style="font-size:1.3rem">${full(o,0)} · ${full(o,1)} · ${full(o,2)}</div><div class="muted">${TYPE[o.t]}</div>`;}
+}
+document.getElementById('fcflip').onclick=()=>{if(fcCur==null)return;document.getElementById('fc').classList.add('flip');document.getElementById('fcrate').style.display='flex';document.getElementById('fcflip').style.display='none';};
+document.getElementById('fc').onclick=()=>document.getElementById('fcflip').click();
+document.querySelectorAll('#fcrate button').forEach(b=>b.onclick=()=>{const r=+b.dataset.r,i=fcQ.shift();if(fcFirst[i]==null)fcFirst[i]=r;
+S.box[i]=r===2?Math.min((S.box[i]??0)+1,5):0;if(r===2)addXP(1);else fcQ.splice(Math.min(r===0?2:4,fcQ.length),0,i);save();nextFC();});
+document.querySelectorAll('#fcmode button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#fcmode button').forEach(x=>x.classList.remove('on'));b.classList.add('on');fcMode=b.dataset.m;startFC();});
+document.querySelectorAll('#fcset button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#fcset button').forEach(x=>x.classList.remove('on'));b.classList.add('on');fcSet=b.dataset.k;startFC();});
+
+// ---- step 4 constructor + boot
+const CONSV=[1,2,4,9,10,11,15,18];const ENDS=['-o','-as','-es','-a','-e','-amos','-emos','-imos','-áis','-éis','-ís','-an','-en'];let consI=18;
+function renderCons(){const t=document.getElementById('consTabs');t.innerHTML='';CONSV.forEach(i=>{const b=document.createElement('button');b.textContent=V[i].v;if(i===consI)b.className='on';b.onclick=()=>{consI=i;renderCons();};t.appendChild(b);});
+const o=V[consI],st=o.v.slice(0,-2);document.getElementById('cons').innerHTML=P.map((p,k)=>`<div class="cons-row"><span>${p}</span><span class="stem">${st} +</span><select data-k="${k}"><option value="">?</option>${ENDS.map(e=>`<option>${e}</option>`).join('')}</select><span id="cm${k}"></span></div>`).join('');document.getElementById('consfb').className='fb';}
+function checkCons(){const o=V[consI],st=o.v.slice(0,-2);let ok=0;document.querySelectorAll('#cons select').forEach(s=>{const k=+s.dataset.k,want=o.f[k].slice(st.length);const good=s.value==='-'+want;if(good)ok++;document.getElementById('cm'+k).textContent=good?'✅':'❌';});
+const fb=document.getElementById('consfb');if(ok===6){fb.className='fb on ok';fb.innerHTML='¡Perfecto! '+o.f.join(', ');addXP(5);S.scores['cons_'+o.v]=1;if(Object.keys(S.scores).filter(k=>k.startsWith('cons_')).length>=3)mark(4);}else{fb.className='fb on bad';fb.innerHTML=`Верно ${ok}/6. Посмотри таблицу окончаний для <b>-${o.g.toUpperCase()}</b> выше.`;}save();}
+const BOOTV=[19,5,12,13,0];let bootI=19;
+function renderBoot(){const t=document.getElementById('bootTabs');t.innerHTML='';BOOTV.forEach(i=>{const b=document.createElement('button');b.textContent=V[i].v;if(i===bootI)b.className='on';b.onclick=()=>{bootI=i;renderBoot();};t.appendChild(b);});
+const o=V[bootI];const c=(p,cls)=>`<div class="${cls}"><span class="lab">${P[p]}</span><b>${full(o,p)}</b></div>`;
+document.getElementById('boot').innerHTML=c(0,'in')+c(3,'out')+c(1,'in')+c(4,'out')+c(2,'in')+c(5,'in');
+document.getElementById('bootNote').innerHTML=`<b>${o.v}</b>: ${TYPE[o.t]}. Слева и внизу «ботинок»: корень меняется. Справа сверху nosotros и vosotros: корень как в инфинитиве.`;}
+
+// ---- step 5 trainer
+let TR=[],trI=0,trOK=0,trHintUsed=false,trErrs=[];
+function startTrainer(){const irr=V.map((o,i)=>i).filter(i=>V[i].t!=='reg'),reg=V.map((o,i)=>i).filter(i=>V[i].t==='reg');
+const pick=(a,n)=>a.slice().sort(()=>Math.random()-.5).slice(0,n);const items=[...pick(irr,9),...pick(reg,6)].map(i=>{let p=Math.floor(Math.random()*6);return {i,p};});
+TR=items.sort(()=>Math.random()-.5);trI=0;trOK=0;trErrs=[];document.getElementById('trdone').className='fb';showTr();}
+function showTr(){const fb=document.getElementById('trfb');fb.className='fb';document.getElementById('trnext').style.display='none';document.getElementById('trcheck').style.display='';
+document.getElementById('trbar').style.width=(trI/TR.length*100)+'%';
+if(trI>=TR.length){document.getElementById('trq').innerHTML='🏁';document.getElementById('trinfo').textContent='';const d=document.getElementById('trdone');d.className='fb on '+(trOK>=12?'ok':'warn');
+d.innerHTML=`Результат: <b>${trOK}/${TR.length}</b>. ${trErrs.length?'Повтори: '+[...new Set(trErrs)].map(v=>'<b>'+v+'</b>').join(', ')+'. Открой их карточки в шаге 1 и пройди тренажёр ещё раз.':'¡Fenomenal!'}`;S.scores.trainer=trOK+'/'+TR.length;addXP(trOK);mark(5);return;}
+trHintUsed=false;const {i,p}=TR[trI],o=V[i];document.getElementById('trinfo').textContent=`Вопрос ${trI+1} из ${TR.length} · верно: ${trOK}`;
+document.getElementById('trq').innerHTML=`<span class="per">(${P[p]})</span> + <span class="inf">${o.v}</span> <span class="muted">(${o.ru})</span>`;const inp=document.getElementById('trin');inp.value='';inp.disabled=false;inp.focus();}
+function checkTr(){const {i,p}=TR[trI],o=V[i];const fb=document.getElementById('trfb');let a=norm(document.getElementById('trin').value).replace(PRON,'');if(!a)return;
+const want=full(o,p),wn=norm(want);let cls,msg;
+if(a===wn){cls='ok';msg='✅ ¡Correcto! <b>'+want+'</b>';if(!trHintUsed)trOK++;else trOK+=.5;}
+else if(strip(a)===strip(wn)){cls='warn';msg='✅ Почти! Не забудь ударение: <b>'+want+'</b>';trOK+=trHintUsed?.5:1;}
+else{cls='bad';trErrs.push(o.v);const rf=norm(regForm(o,p));
+if(o.r&&strip(a)===strip(o.f[p]))msg=`❌ Забыл местоимение! Возвратный глагол: <b>${want}</b> (${RP.join('–')})`;
+else if(o.t!=='reg'&&strip(a)===strip(rf))msg=`❌ Ловушка! ${HINT[o.t]}<br>Правильно: <b>${want}</b>`;
+else if(['ue','ie','i'].includes(o.t)&&(p===3||p===4))msg=`❌ Для ${PS[p]} корень НЕ меняется (это вне ботинка). Правильно: <b>${want}</b>`;
+else{const E={ar:['o','as','a','amos','áis','an'],er:['o','es','e','emos','éis','en'],ir:['o','es','e','imos','ís','en']}[o.g];msg=`❌ Правильно: <b>${want}</b>. Глагол на -${o.g}: для <b>${PS[p]}</b> окончание <b>-${E[p]}</b>${o.t!=='reg'?' + '+TYPE[o.t]:''}.`;}}
+trOK=Math.round(trOK*2)/2;fb.className='fb on '+cls;fb.innerHTML=msg+` <button class="btn sm ghost" onclick="speak('${want}')">🔊</button>`;
+document.getElementById('trin').disabled=true;document.getElementById('trcheck').style.display='none';document.getElementById('trnext').style.display='';document.getElementById('trnext').focus();}
+document.getElementById('trcheck').onclick=checkTr;
+document.getElementById('trnext').onclick=()=>{trI++;showTr();};
+document.getElementById('trin').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkTr();}});
+document.getElementById('trhint').onclick=()=>{if(trI>=TR.length)return;const {i,p}=TR[trI],o=V[i];trHintUsed=true;const fb=document.getElementById('trfb');fb.className='fb on warn';
+fb.innerHTML=`ⓘ <b>${TYPE[o.t]}</b>${o.r?' + возвратный (me/te/se…)':''}. ${HINT[o.t]} <br><span class="muted">(с подсказкой засчитывается ½ балла)</span>`;};
+const acc=document.getElementById('tracc');['á','é','í','ó','ú','ñ'].forEach(ch=>{const b=document.createElement('button');b.textContent=ch;b.onclick=()=>{const inp=document.getElementById('trin');const s=inp.selectionStart??inp.value.length;inp.value=inp.value.slice(0,s)+ch+inp.value.slice(inp.selectionEnd??s);inp.focus();inp.selectionStart=inp.selectionEnd=s+1;};acc.appendChild(b);});
+
+// ---- step 6
+const DLG=[
+{t:'🏠 En casa, por la mañana',l:[
+['— Mamá, ¿a qué hora ',['te despiertas','te despertas','despiertas'],' tú?'],
+['— Yo ',['me despierto','despierto','me desperto'],' a las siete, cuando el despertador ',['suena','sona','suenan'],'.'],
+['— ¿Y después?'],
+['— Después ',['me visto','me vesto','visto'],' y ',['bebo','bebe','bebes'],' un café.']]},
+{t:'🍕 En el restaurante',l:[
+['— Perdone, ¿cuánto ',['vale','valgo','valen'],' la pizza grande?'],
+['— Doce euros. Es muy grande.'],
+['— Vale, entonces mi amigo y yo ',['compartimos','compartemos','comparten'],' una pizza.'],
+['El camarero ',['sirve','serve','sirvo'],' la pizza y ',['sonríe','sonreí','sonrío'],'.']]},
+{t:'🚗 Mi familia',l:[
+['— ¿Quién ',['conduce','conduzco','conducis'],' en tu familia?'],
+['— Mi padre. Yo no ',['conduzco','conduco','conduce'],': ¡tengo bici!'],
+['— ¿Y viajáis mucho?'],
+['— Sí, en verano nosotros ',['viajamos','viajan','viajemos'],'. A veces ',['volamos','vuelamos','vuelan'],' a otro país.']]}];
+function renderDlg(){const d=document.getElementById('dlg');let html='',k=0;DLG.forEach(g=>{html+=`<h3 style="margin-top:12px">${g.t}</h3>`;g.l.forEach(line=>{let s='<p>';for(let j=0;j<line.length;j++){if(Array.isArray(line[j])){const opts=line[j].slice().sort(()=>Math.random()-.5);s+=`<select data-a="${line[j][0]}" id="dl${k++}"><option value="">…</option>${opts.map(o=>`<option>${o}</option>`).join('')}</select>`;}else s+=line[j];}html+=s+'</p>';});});d.innerHTML=html;}
+function checkDlg(){let ok=0,n=0;document.querySelectorAll('#dlg select').forEach(s=>{n++;const g=s.value===s.dataset.a;if(g)ok++;s.className=s.value?(g?'ok':'bad'):'';});const fb=document.getElementById('dlgfb');S.scores.dialogos=ok+'/'+n;
+fb.className='fb on '+(ok===n?'ok':'bad');fb.innerHTML=ok===n?'🎉 ¡Todo bien! '+ok+'/'+n:`Верно ${ok}/${n}. Красные исправь. Спроси себя: какое лицо? есть ли ловушка (ботинок, yo, me/te/se)?`;if(ok===n)addXP(10);save();checkS6();}
+const RID=[
+{q:'Lo haces con agua, zumo o leche.',ru:'Ты делаешь это с водой, соком или молоком.',a:'beber',o:['beber','secar','correr','servir']},
+{q:'Lo hacen los pájaros y los aviones.',ru:'Это делают птицы и самолёты.',a:'volar',o:['viajar','volar','sonar','unir']},
+{q:'El despertador lo hace por la mañana: ¡riiiing!',ru:'Будильник делает это утром: дзынь!',a:'sonar',o:['sonreír','saludar','sonar','despertarse']},
+{q:'Lo haces cuando estás contento. 😊',ru:'Ты делаешь это, когда рад.',a:'sonreír',o:['enfadarse','sonreír','enamorarse','pesarse']},
+{q:'Lo haces cuando ves a un amigo en la calle: «¡Hola!»',ru:'Ты делаешь это, когда видишь друга на улице.',a:'saludar',o:['saludar','robar','compartir','conducir']},
+{q:'Lo haces con una toalla después de la ducha.',ru:'Ты делаешь это полотенцем после душа.',a:'secar',o:['vestirse','secar','unir','aprobar']}];
+let ridOK={};
+function renderRid(){document.getElementById('rid').innerHTML=RID.map((r,i)=>`<div class="riddle"><b>${i+1}.</b> ${r.q} <button class="btn sm ghost" onclick="this.nextElementSibling.style.display='inline'">перевод</button><span class="muted" style="display:none"> ${r.ru}</span>
+<div class="opts">${r.o.map(x=>`<span class="chip" onclick="ansRid(${i},this,'${x}')">${x}</span>`).join('')}</div></div>`).join('');}
+function ansRid(i,el,x){if(ridOK[i]!=null)return;const ok=x===RID[i].a;ridOK[i]=ok;el.classList.add(ok?'ok':'bad');if(!ok)[...el.parentNode.children].find(c=>c.textContent===RID[i].a).classList.add('ok');else addXP(2);
+const n=Object.keys(ridOK).length;if(n===RID.length){const c=Object.values(ridOK).filter(Boolean).length;S.scores.adivinanzas=c+'/'+RID.length;const fb=document.getElementById('ridfb');fb.className='fb on '+(c===RID.length?'ok':'warn');fb.textContent=`Загадки: ${c}/${RID.length}. Бонус: придумай свою загадку для любого глагола и загадай её учителю на уроке!`;save();checkS6();}}
+const ME=[
+{q:'¿A qué hora te despiertas?',ru:'Во сколько ты просыпаешься?',st:'Me despierto a las…',v:5,p:0},
+{q:'¿Qué bebes por la mañana?',ru:'Что ты пьёшь утром?',st:'Por la mañana bebo…',v:1,p:0},
+{q:'¿Corres? ¿Dónde?',ru:'Ты бегаешь? Где?',st:'(No) corro en…',v:4,p:0},
+{q:'¿Con quién compartes la comida en el colegio?',ru:'С кем ты делишься едой в школе?',st:'Comparto…',v:2,p:0},
+{q:'¿Te enfadas a menudo? ¿Cuándo?',ru:'Ты часто злишься? Когда?',st:'Me enfado cuando…',v:7,p:0},
+{q:'¿Quién conduce en tu familia?',ru:'Кто водит машину в твоей семье?',st:'Mi … conduce.',v:3,p:2},
+{q:'¿Cuánto vale tu comida favorita?',ru:'Сколько стоит твоя любимая еда?',st:'… vale … euros.',v:16,p:2}];
+function renderMe(){document.getElementById('meq').innerHTML=ME.map((m,i)=>`<div class="me-q"><div class="q">${i+1}. ${m.q}</div><div class="qru">${m.ru} · начни так: <i>${m.st}</i></div><input type="text" id="me${i}" value="${(S['me'+i]||'').replace(/"/g,'&quot;')}"><div class="res" id="mer${i}"></div></div>`).join('');
+ME.forEach((m,i)=>document.getElementById('me'+i).addEventListener('input',e=>{S['me'+i]=e.target.value;save();}));}
+function checkMe(){let ok=0;ME.forEach((m,i)=>{const o=V[m.v];const a=' '+strip(norm(document.getElementById('me'+i).value))+' ';const want=strip(norm(full(o,m.p)));const r=document.getElementById('mer'+i);
+if(a.trim().length<3){r.innerHTML='<span style="color:var(--warn)">✏️ Напиши ответ</span>';return;}
+if(a.includes(' '+want+' ')){ok++;r.innerHTML=`<span style="color:var(--ok)">✅ Глагол <b>${full(o,m.p)}</b> правильно!</span>`;}
+else if(o.r&&a.includes(' '+strip(o.f[m.p])+' '))r.innerHTML=`<span style="color:var(--bad)">❌ Добавь <b>${RP[m.p]}</b> перед глаголом: ${full(o,m.p)}</span>`;
+else if(a.includes(' '+strip(norm(regForm(o,m.p)))+' ')&&o.t!=='reg')r.innerHTML=`<span style="color:var(--bad)">❌ Ловушка: ${TYPE[o.t]}. Нужно: <b>${full(o,m.p)}</b></span>`;
+else r.innerHTML=`<span style="color:var(--bad)">❌ Не нашёл правильную форму глагола. Подсказка: <b>${PS[m.p]}</b> → <b>${full(o,m.p)}</b></span>`;});
+S.scores.sobre_mi=ok+'/'+ME.length;const fb=document.getElementById('mefb');fb.className='fb on '+(ok===ME.length?'ok':'warn');fb.textContent=ok===ME.length?'🎉 Все предложения правильные! Теперь прочитай их вслух.':`Верно ${ok}/${ME.length}. Исправь и проверь ещё раз.`;if(ok===ME.length)addXP(10);save();checkS6();}
+function checkS6(){if(S.scores.dialogos&&S.scores.adivinanzas&&S.scores.sobre_mi)mark(6);}
+
+// ---- step 7
+const FORMS={};V.forEach(o=>{o.f.forEach(f=>{if(f!=='uno')FORMS[strip(f.toLowerCase())]=o.v;});});
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function analyze(){const t=document.getElementById('txt').value;S.text=t;save();const words=(t.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g)||[]);const found=new Set();
+const html=esc(t).replace(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+/g,w=>{const v=FORMS[strip(w.toLowerCase())];if(v){found.add(v);return '<mark>'+w+'</mark>';}return w;});
+document.getElementById('prev').innerHTML=html||'<span class="muted">Здесь появится твой текст</span>';
+const wc=document.getElementById('wc'),vc=document.getElementById('vc');wc.textContent='Слов: '+words.length+' / 40';wc.className=words.length>=40?'okc':'no';vc.textContent='Глаголов: '+found.size+' / 6';vc.className=found.size>=6?'okc':'no';
+document.getElementById('found').innerHTML=[...found].map(v=>'<span>'+v+'</span>').join('');
+if(words.length>=40&&found.size>=6&&!S.done[7]){mark(7);toast('🎉 Текст готов! +20 XP');}return {w:words.length,f:[...found]};}
+document.getElementById('txt').addEventListener('input',analyze);
+document.querySelectorAll('.se').forEach((c,i)=>{c.checked=!!S.self[i];c.onchange=()=>{S.self[i]=c.checked;save();};});
+function renderStars(){document.querySelectorAll('#stars span').forEach((s,i)=>s.classList.toggle('on',i<S.stars));}
+document.querySelectorAll('#stars span').forEach((s,i)=>s.onclick=()=>{S.stars=i+1;renderStars();save();});
+document.getElementById('hard3').addEventListener('input',e=>{S.hard3=e.target.value;save();});
+function buildReport(copy){const a=analyze();const sc=S.scores;const hard=V.filter((o,i)=>(S.box[i]??0)<2&&S.box[i]!=null).map(o=>o.v);
+const r=`📚 ДЗ «Verbos 21–40» — Иван
+Шаги выполнены: ${Object.keys(S.done).length}/8 · ⭐ ${S.xp} XP
+Карточек открыто: ${Object.keys(S.seen).length}/20 · ассоциаций: ${Object.values(S.ass).filter(x=>x&&x.trim()).length}
+Сортировка: раунд 1 — ${sc.sort1||'—'}, раунд 2 — ${sc.sort2||'—'}
+Флешкарты: ${sc.fc||'—'}
+Ещё трудные (по флешкартам): ${hard.join(', ')||'—'}
+Тренажёр спряжения: ${sc.trainer||'—'}
+Диалоги: ${sc.dialogos||'—'} · Загадки: ${sc.adivinanzas||'—'} · Про меня: ${sc.sobre_mi||'—'}
+
+Про меня:
+${ME.map((m,i)=>`${i+1}. ${S['me'+i]||'—'}`).join('\n')}
+
+✍️ Мой текст (${a.w} слов, глаголы: ${a.f.join(', ')||'—'}):
+${S.text||'—'}
+
+Самопроверка: ${S.self.filter(Boolean).length}/4 пунктов · самооценка ${'★'.repeat(S.stars)||'—'}
+Самые трудные глаголы (по мнению Ивана): ${S.hard3||'—'}
+Мои ассоциации:
+${V.map((o,i)=>S.ass[i]&&S.ass[i].trim()?`• ${o.v}: ${S.ass[i]}`:'').filter(Boolean).join('\n')||'—'}`;
+document.getElementById('report').textContent=r;
+if(copy){try{navigator.clipboard.writeText(r).then(()=>toast('📋 Скопировано! Вставь в Telegram'),()=>toast('Выдели текст и скопируй вручную'));}catch(e){toast('Выдели текст и скопируй вручную');}}}
+
+// ---- Telegram
+const TG_TOKEN='ВСТАВЬТЕ_ТОКЕН_БОТА';
+const TG_CHAT='396389345';
+async function sendReport(){buildReport(false);const txt=document.getElementById('report').textContent;const btn=document.getElementById('sendBtn');
+if(TG_TOKEN.startsWith('ВСТАВЬТЕ')){toast('Отправка ещё не настроена: нажми «Скопировать»');return;}
+btn.disabled=true;btn.textContent='Отправляю…';
+try{const parts=[];for(let i=0;i<txt.length;i+=3800)parts.push(txt.slice(i,i+3800));
+for(const p of parts){const r=await fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:p})});const j=await r.json();if(!j.ok)throw new Error(j.description||'error');}
+btn.textContent='✅ Отправлено!';toast('📩 Отчёт отправлен учителю!');addXP(10);setTimeout(()=>{btn.disabled=false;btn.textContent='📩 Отправить ещё раз';},4000);}
+catch(e){btn.disabled=false;btn.textContent='📩 Отправить учителю';toast('Не получилось отправить. Нажми «Скопировать»');}}
+
+// ---- init
+document.getElementById('xp').textContent='⭐ '+S.xp+' XP';
+document.getElementById('txt').value=S.text||'';document.getElementById('hard3').value=S.hard3||'';
+renderGrid();renderSort(1);renderSort(2);renderCons();renderBoot();renderDlg();renderRid();renderMe();renderStars();startFC();startTrainer();analyze();go(S.step||0);
+</script>
+</body>
+</html>
