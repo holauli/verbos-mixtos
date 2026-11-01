@@ -619,7 +619,7 @@ document.getElementById('report').textContent=r;
 if(copy){try{navigator.clipboard.writeText(r).then(()=>toast('📋 Скопировано! Вставь в Telegram'),()=>toast('Выдели текст и скопируй вручную'));}catch(e){toast('Выдели текст и скопируй вручную');}}}
 
 // ---- Telegram
-const TG_TOKEN='ВСТАВЬТЕ_ТОКЕН_БОТА';
+const TG_TOKEN='8753603224:AAEqPs0LuyK1SuF0K2hQWj2Sdf9IvKOSXK8';
 const TG_CHAT='396389345';
 async function sendReport(){buildReport(false);const txt=document.getElementById('report').textContent;const btn=document.getElementById('sendBtn');
 if(TG_TOKEN.startsWith('ВСТАВЬТЕ')){toast('Отправка ещё не настроена: нажми «Скопировать»');return;}
