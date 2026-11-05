@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Precalentamiento · Verbos reflexivos · Iván</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--terra:#C65D3B;--terra-l:#F3D9CC;--indigo:#2E3A6E;--indigo-l:#DDE1F0;--cream:#FBF5EC;--card:#FFFDF9;--ink:#2B2620;--muted:#7A6F63;--ok:#2F8F5B;--ok-l:#D8F0E2;--bad:#C0392B;--bad-l:#F8DAD5;--warn:#B7791F;--warn-l:#FCEFD6;--line:#E8DDCD}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Poppins,system-ui,sans-serif;line-height:1.55}
+h1,h2,h3{font-family:Lora,Georgia,serif;color:var(--indigo);line-height:1.25;margin:.2em 0 .5em}
+h2{font-size:1.5rem}h3{font-size:1.12rem}
+a{color:var(--terra)}
+header{background:var(--indigo);color:#fff;padding:20px 16px 14px}
+header .in{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+header h1{color:#fff;margin:0;font-size:1.6rem}
+header .sub{opacity:.85;font-size:.9rem}
+.xp{background:var(--terra);color:#fff;border-radius:999px;padding:6px 14px;font-weight:600}
+nav{position:sticky;top:0;z-index:5;background:var(--cream);border-bottom:1px solid var(--line);overflow-x:auto}
+nav .in{max-width:900px;margin:0 auto;display:flex;gap:6px;padding:10px 16px}
+nav button{flex:0 0 auto;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;color:var(--ink)}
+nav button.on{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+nav button.done::after{content:" ✓";color:var(--ok);font-weight:700}
+nav button.on.done::after{color:#bff0d2}
+.wrap{max-width:900px;margin:0 auto;padding:16px 16px 80px}
+section{display:none}section.on{display:block;animation:f .3s}
+@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
+.tip{background:var(--indigo-l);border-left:5px solid var(--indigo);border-radius:12px;padding:13px 16px;margin:14px 0}
+.task{background:var(--terra-l);border-left:5px solid var(--terra);border-radius:12px;padding:13px 16px;margin:14px 0}
+.lbl{display:block;font-family:Lora,serif;font-weight:700;margin-bottom:3px}
+.muted{color:var(--muted);font-size:.9rem}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--terra);color:#fff;font:inherit;font-weight:600;padding:10px 18px;border-radius:12px;cursor:pointer;margin:4px 4px 4px 0}
+.btn.sec{background:var(--indigo)}.btn.ghost{background:transparent;color:var(--indigo);border:1.5px solid var(--indigo)}
+.btn.sm{padding:5px 11px;font-size:.85rem;border-radius:9px}
+.btn:disabled{opacity:.45;cursor:default}
+.next{display:flex;justify-content:flex-end;margin-top:16px}
+.fb{border-radius:12px;padding:10px 14px;margin:10px 0;display:none}
+.fb.on{display:block}.fb.ok{background:var(--ok-l);color:#1d5e3b}.fb.bad{background:var(--bad-l);color:#7a2219}.fb.warn{background:var(--warn-l);color:#7a5210}
+.mirror{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mirror div{background:#fff;border:2px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.mirror .em{font-size:2.6rem}
+.mirror b{font-family:Lora,serif;color:var(--indigo);font-size:1.15rem}
+.mirror .self{border-color:var(--terra)}
+.mq{border-bottom:1px solid var(--line);padding:10px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.mq .ph{font-family:Lora,serif;font-weight:700;color:var(--indigo);font-size:1.1rem}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;cursor:pointer;font-weight:500;user-select:none;display:inline-block}
+.chip.ok{background:var(--ok-l);border-color:var(--ok);color:var(--ok)}
+.chip.bad{background:var(--bad-l);border-color:var(--bad);color:var(--bad);animation:sh .35s}
+.chip.sel{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.chain{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:12px auto}
+.chain>div{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px;text-align:center}
+.chain .p{font-size:.85rem;color:var(--muted)}
+.chain .r{font-family:Lora,serif;font-size:1.6rem;font-weight:700;color:var(--terra)}
+.chain select{font:inherit;font-size:1.1rem;border:1.5px solid var(--line);border-radius:8px;padding:3px 6px;margin-top:4px}
+.chain select.ok{border-color:var(--ok);background:var(--ok-l)}.chain select.bad{border-color:var(--bad);background:var(--bad-l)}
+.beat{font-size:1.6rem;text-align:center;letter-spacing:.06em;font-family:Lora,serif;color:var(--indigo)}
+.beat span{display:inline-block;padding:2px 8px;border-radius:8px;transition:.15s}
+.beat span.hit{background:var(--terra);color:#fff;transform:scale(1.15)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.vc{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px;text-align:center;cursor:pointer;position:relative}
+.vc:hover{border-color:var(--terra)}
+.vc .em{font-size:2.3rem}
+.vc .es{font-family:Lora,serif;font-weight:700;color:var(--indigo)}
+.vc .ru{font-size:.82rem;color:var(--muted)}
+.vc.seen::after{content:"✓";position:absolute;top:6px;right:9px;color:var(--ok);font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(30,30,50,.5);display:none;align-items:center;justify-content:center;z-index:20;padding:14px}
+.modal.on{display:flex}
+.modal .m{background:var(--card);border-radius:18px;max-width:480px;width:100%;padding:22px;max-height:92vh;overflow:auto}
+.conj{width:100%;border-collapse:collapse;margin:8px 0}
+.conj td{border-bottom:1px solid var(--line);padding:5px 8px}
+.conj .pr{color:var(--terra);font-weight:700}
+.conj .ch{color:var(--terra);text-decoration:underline}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:.78rem;font-weight:600;background:var(--terra-l);color:var(--terra)}
+.order{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+.order .slot{background:#fff;border:2px dashed var(--line);border-radius:12px;padding:8px 12px;min-height:44px;display:flex;align-items:center;gap:10px}
+.order .slot .n{font-weight:700;color:var(--muted);width:22px}
+.order .slot.fill{border-style:solid;border-color:var(--indigo)}
+.order .slot.ok{border-color:var(--ok);background:var(--ok-l)}.order .slot.bad{border-color:var(--bad);background:var(--bad-l)}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:40px}
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:620px;margin:10px auto}
+.mem .c{aspect-ratio:1/0.8;border-radius:12px;background:var(--indigo);color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;font-weight:600;padding:6px;font-size:.95rem;user-select:none;transition:.2s}
+.mem .c.open{background:#fff;color:var(--indigo);border:2px solid var(--indigo)}
+.mem .c.done{background:var(--ok-l);color:var(--ok);border:2px solid var(--ok);cursor:default}
+.mem .c .em{font-size:2rem}
+.gap{border-bottom:1px solid var(--line);padding:10px 0}
+.gap .s{font-size:1.08rem}
+.gap .opts{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+textarea,input[type=text]{font:inherit;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;width:100%}
+textarea{min-height:130px}
+.preview{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;min-height:50px;white-space:pre-wrap}
+.preview mark{background:var(--terra-l);color:var(--terra);font-weight:600;border-radius:4px;padding:0 2px}
+.meter{font-weight:600;margin:6px 0}.meter .okc{color:var(--ok)}.meter .no{color:var(--bad)}
+pre.report{white-space:pre-wrap;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;font-family:Poppins,sans-serif;font-size:.86rem;max-height:360px;overflow:auto}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--indigo);color:#fff;padding:10px 18px;border-radius:12px;opacity:0;transition:.3s;z-index:30;pointer-events:none}
+.toast.on{opacity:1}
+@media(max-width:560px){.mem{grid-template-columns:repeat(3,1fr)}.mem .c{font-size:.8rem}}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <div><h1>🪞 Precalentamiento: verbos reflexivos</h1>
+  <div class="sub">Разминка для Ивана перед уроком · 15–20 минут</div></div>
+  <div class="xp" id="xp">⭐ 0 XP</div>
+</div></header>
+<nav><div class="in" id="nav"></div></nav>
+<div class="wrap">
+
+<!-- 0 -->
+<section data-s="0">
+  <h2>1. Зеркало 🪞</h2>
+  <p>Ты уже встречал глаголы <b>despertarse</b>, <b>vestirse</b>, <b>enfadarse</b>. У них на конце <b>-se</b>. Что это значит?</p>
+  <div class="mirror">
+    <div><div class="em">🧽🚗</div><b>Lavo el coche.</b><div class="muted">Я мою машину.<br>Действие → на <b>другого</b> 👉</div></div>
+    <div class="self"><div class="em">🧼🙂</div><b><span style="color:var(--terra)">Me</span> lavo.</b><div class="muted">Я моюсь (мою <b>себя</b>).<br>Действие → возвращается ко <b>мне</b> 🪞</div></div>
+  </div>
+  <div class="tip"><span class="lbl">💡 Главная идея</span>
+  <b>-se</b> — это «зеркало». Если действие возвращается к тому, кто его делает, ставим маленькое слово <b>me / te / se…</b> В русском у таких глаголов часто есть <b>-ся</b>: мыть<b>ся</b>, одевать<b>ся</b>, просыпать<b>ся</b>.</div>
+  <div class="box">
+    <h3>На себя или на другого?</h3>
+    <div id="mq"></div>
+    <div class="fb" id="mqfb"></div>
+  </div>
+  <div class="next"><button class="btn" onclick="go(1)">Дальше →</button></div>
+</section>
+
+<!-- 1 -->
+<section data-s="1">
+  <h2>2. Цепочка-ритм: me · te · se · nos · os · se</h2>
+  <p>Это самое важное, что нужно запомнить. Каждому лицу соответствует своё маленькое слово:</p>
+  <div class="chain" id="chainFull"></div>
+  <div class="task"><span class="lbl">🥁 Запоминаем ритмом</span>
+  Нажми «Ритм» и <b>хлопай</b> на каждое слово, проговаривая вслух. Повтори 3 раза: сначала с подсказкой, потом с закрытыми глазами.</div>
+  <div class="beat" id="beat"><span>me</span> · <span>te</span> · <span>se</span> &nbsp;|&nbsp; <span>nos</span> · <span>os</span> · <span>se</span></div>
+  <div style="text-align:center"><button class="btn sec" onclick="rhythm()">🥁 Ритм</button> <span class="muted" id="beatC">0/3</span></div>
+  <div class="tip"><span class="lbl">🧠 Подсказки для памяти</span>
+  • <b>m</b>e ↔ <b>m</b>ой, <b>t</b>e ↔ <b>т</b>ебя, <b>n</b>os ↔ <b>n</b>osotros, <b>os</b> ↔ vos<b>os</b>tros.<br>
+  • <b>se</b> встречается два раза: он, она, вы (usted) <b>и</b> они, вы (ustedes). Это «третье лицо».</div>
+  <div class="box">
+    <h3>Проверь себя: закрыто!</h3>
+    <p class="muted">Без подсказки выбери нужное слово для каждого лица.</p>
+    <div class="chain" id="chainTest"></div>
+    <div style="text-align:center"><button class="btn sec" onclick="checkChain()">Проверить</button></div>
+    <div class="fb" id="chfb"></div>
+  </div>
+  <div class="next"><button class="btn" onclick="go(2)">Дальше →</button></div>
+</section>
+
+<!-- 2 -->
+<section data-s="2">
+  <h2>3. Мой день: 10 глаголов</h2>
+  <div class="task"><span class="lbl">✍️ Задание</span>
+  Открой каждую карточку: послушай 🔊, повтори вслух <b>«me + глагол»</b> и <b>покажи действие</b> (как будто чистишь зубы, причёсываешься…). Движение помогает запомнить.</div>
+  <div class="muted" style="font-weight:600">Открыто: <span id="seenC">0</span>/10</div>
+  <div class="grid" id="vgrid"></div>
+  <div class="tip"><span class="lbl">👢 Узнаёшь «ботинки»?</span>
+  despertarse (e→ie), vestirse (e→i), acostarse (o→ue) меняют корень, как в прошлой домашке: <b>me despierto, me visto, me acuesto</b>. В nosotros/vosotros корень не меняется.</div>
+  <div class="next"><button class="btn" onclick="go(3)">Дальше →</button></div>
+</section>
+
+<!-- 3 -->
+<section data-s="3">
+  <h2>4. Игра «Мемори»</h2>
+  <p>Найди пары: картинка ↔ фраза. Каждый раз, открывая фразу, <b>произноси её вслух</b>.</p>
+  <div class="mem" id="mem"></div>
+  <div class="fb" id="memfb"></div>
+  <div style="text-align:center"><button class="btn ghost sm" onclick="startMem()">↻ Заново</button></div>
+  <div class="next"><button class="btn" onclick="go(4)">Дальше →</button></div>
+</section>
+
+<!-- 4 -->
+<section data-s="4">
+  <h2>5. Mi mañana: расставь по порядку</h2>
+  <p>Как проходит утро? Нажимай на фразы по порядку: с чего день начинается и чем заканчивается.</p>
+  <div class="pool" id="opool"></div>
+  <div class="order" id="oslots"></div>
+  <button class="btn sec" onclick="checkOrder()">Проверить</button> <button class="btn ghost" onclick="resetOrder()">↻ Сначала</button>
+  <div class="fb" id="ofb"></div>
+  <div class="next"><button class="btn" onclick="go(5)">Дальше →</button></div>
+</section>
+
+<!-- 5 -->
+<section data-s="5">
+  <h2>6. me, te, se… или ничего?</h2>
+  <div class="tip"><span class="lbl">💡 Алгоритм</span>1) Кто делает? → выбери слово из цепочки. 2) Действие на себя или на другого? Если на другого (машину, собаку, брата), то <b>—</b> (ничего не нужно).</div>
+  <div id="gaps"></div>
+  <div class="fb" id="gfb"></div>
+  <div class="next"><button class="btn" onclick="go(6)">Дальше →</button></div>
+</section>
+
+<!-- 6 -->
+<section data-s="6">
+  <h2>7. Расскажи про своё утро</h2>
+  <div class="task"><span class="lbl">✍️ Финал разминки</span>
+  Напиши <b>4–6 предложений</b> о своём утре. Используй не меньше <b>4 разных</b> глаголов из урока. Потом <b>прочитай вслух</b>.<br>
+  <span class="muted">Опоры: Me despierto a las… · Después… · Primero… · Luego… · Por la noche me acuesto a las…</span></div>
+  <textarea id="txt" placeholder="Me despierto a las siete. Después…"></textarea>
+  <div class="meter"><span id="vcnt">Глаголов: 0 / 4</span></div>
+  <div class="preview" id="prev"></div>
+  <p class="muted">Подсвечиваются правильные пары «местоимение + глагол». Если глагол не подсветился, проверь, есть ли перед ним me/te/se.</p>
+  <div class="box">
+    <h3>📩 Отчёт учителю</h3>
+    <button class="btn" id="sendBtn" onclick="sendReport()">📩 Отправить учителю</button>
+    <button class="btn sec" onclick="buildReport(true)">📋 Скопировать</button>
+    <pre class="report" id="report"></pre>
+  </div>
+</section>
+
+</div>
+<div class="modal" id="modal"><div class="m" id="mbody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PER=['yo','tú','él / ella / usted','nosotros','vosotros','ellos / ustedes'];
+const RP=['me','te','se','nos','os','se'];
+const V=[
+{v:'despertarse',ru:'просыпаться',e:'⏰',t:'e → ie',f:['despierto','despiertas','despierta','despertamos','despertáis','despiertan'],ex:'Me despierto a las siete.'},
+{v:'levantarse',ru:'вставать',e:'🛏️⬆️',f:['levanto','levantas','levanta','levantamos','levantáis','levantan'],ex:'Me levanto rápido.'},
+{v:'ducharse',ru:'принимать душ',e:'🚿',f:['ducho','duchas','ducha','duchamos','ducháis','duchan'],ex:'Me ducho por la mañana.'},
+{v:'secarse',ru:'вытираться',e:'🧖',f:['seco','secas','seca','secamos','secáis','secan'],ex:'Me seco con la toalla.'},
+{v:'vestirse',ru:'одеваться',e:'👕',t:'e → i',f:['visto','vistes','viste','vestimos','vestís','visten'],ex:'Me visto para ir al colegio.'},
+{v:'peinarse',ru:'причёсываться',e:'💇',f:['peino','peinas','peina','peinamos','peináis','peinan'],ex:'Me peino delante del espejo.'},
+{v:'lavarse los dientes',ru:'чистить зубы',e:'🪥',f:['lavo','lavas','lava','lavamos','laváis','lavan'],ex:'Me lavo los dientes dos veces al día.'},
+{v:'bañarse',ru:'купаться, принимать ванну',e:'🛁',f:['baño','bañas','baña','bañamos','bañáis','bañan'],ex:'En verano me baño en el mar.'},
+{v:'acostarse',ru:'ложиться спать',e:'😴🌙',t:'o → ue',f:['acuesto','acuestas','acuesta','acostamos','acostáis','acuestan'],ex:'Me acuesto a las diez.'},
+{v:'llamarse',ru:'называться, зваться',e:'🙋',f:['llamo','llamas','llama','llamamos','llamáis','llaman'],ex:'Me llamo Iván.'}
+];
+const full=(o,p)=>RP[p]+' '+o.f[p]+(o.v.includes('dientes')?' los dientes':'');
+const strip=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+
+let S={step:0,done:{},xp:0,seen:{},sc:{},text:'',beat:0};
+try{const s=JSON.parse(localStorage.getItem('ivan_reflex')||'null');if(s)S=Object.assign(S,s);}catch(e){}
+const save=()=>{try{localStorage.setItem('ivan_reflex',JSON.stringify(S));}catch(e){}};
+function addXP(n){S.xp+=n;document.getElementById('xp').textContent='⭐ '+S.xp+' XP';save();}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('on');setTimeout(()=>el.classList.remove('on'),1800);}
+function mark(i){if(!S.done[i]){S.done[i]=1;addXP(15);}nav();save();}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='es-ES';u.rate=.85;const v=speechSynthesis.getVoices().filter(x=>x.lang&&x.lang.startsWith('es'));if(v.length)u.voice=v.find(x=>x.lang==='es-ES')||v[0];speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+const NAMES=['1 · Зеркало','2 · Цепочка','3 · Мой день','4 · Мемори','5 · Порядок','6 · me/te/se?','7 · Моё утро'];
+function nav(){const n=document.getElementById('nav');n.innerHTML='';NAMES.forEach((t,i)=>{const b=document.createElement('button');b.textContent=t;if(i===S.step)b.className='on';if(S.done[i])b.classList.add('done');b.onclick=()=>go(i);n.appendChild(b);});}
+function go(i){S.step=i;document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',+s.dataset.s===i));nav();save();scrollTo({top:0,behavior:'smooth'});if(i===6)buildReport(false);}
+
+// 1 mirror
+const MQ=[['Lavo el coche.','o'],['Me lavo las manos.','s'],['Seco los platos.','o'],['Me seco con la toalla.','s'],['Despierto a mi hermano.','o'],['Me despierto tarde.','s'],['Baño a mi perro.','o'],['Me baño en el mar.','s']].sort(()=>Math.random()-.5);
+let mqA={};
+function renderMQ(){document.getElementById('mq').innerHTML=MQ.map((q,i)=>`<div class="mq"><span class="ph">${q[0]} <button class="btn sm ghost" onclick="speak('${q[0]}')">🔊</button></span><span><span class="chip" onclick="ansMQ(${i},'s',this)">🪞 на себя</span> <span class="chip" onclick="ansMQ(${i},'o',this)">👉 на другого</span></span></div>`).join('');}
+function ansMQ(i,a,el){if(mqA[i]!=null)return;const ok=a===MQ[i][1];mqA[i]=ok;el.classList.add(ok?'ok':'bad');if(ok)addXP(1);
+if(Object.keys(mqA).length===MQ.length){const c=Object.values(mqA).filter(Boolean).length;S.sc.espejo=c+'/'+MQ.length;const fb=document.getElementById('mqfb');fb.className='fb on '+(c===MQ.length?'ok':'warn');fb.innerHTML=(c===MQ.length?'🎉 Отлично! ':'Верно '+c+'/'+MQ.length+'. ')+'Заметил? Когда есть <b>me</b>, действие на себя.';mark(0);}}
+
+// 2 chain
+function renderChain(){document.getElementById('chainFull').innerHTML=PER.map((p,i)=>`<div><div class="p">${p}</div><div class="r">${RP[i]}</div></div>`).join('');
+const opts=['me','te','se','nos','os'];document.getElementById('chainTest').innerHTML=PER.map((p,i)=>`<div><div class="p">${p}</div><select data-i="${i}"><option value="">?</option>${opts.map(o=>`<option>${o}</option>`).join('')}</select></div>`).join('');
+document.getElementById('beatC').textContent=Math.min(S.beat,3)+'/3';}
+function rhythm(){const sp=[...document.querySelectorAll('#beat span')];let k=0;const words=['me','te','se','nos','os','se'];
+const tick=()=>{sp.forEach(s=>s.classList.remove('hit'));if(k<sp.length){sp[k].classList.add('hit');speak(words[k]);k++;setTimeout(tick,750);}else{S.beat++;document.getElementById('beatC').textContent=Math.min(S.beat,3)+'/3';if(S.beat===3)addXP(5);save();}};tick();}
+function checkChain(){let ok=0;document.querySelectorAll('#chainTest select').forEach(s=>{const g=s.value===RP[+s.dataset.i];if(g)ok++;s.className=s.value?(g?'ok':'bad'):'bad';});const fb=document.getElementById('chfb');S.sc.cadena=ok+'/6';
+if(ok===6){fb.className='fb on ok';fb.textContent='🎉 ¡Perfecto! Цепочка в голове. Скажи её вслух ещё раз: me-te-se, nos-os-se!';addXP(10);mark(1);}else{fb.className='fb on bad';fb.textContent='Верно '+ok+'/6. Посмотри на таблицу сверху, хлопни ритм ещё раз и попробуй снова.';}save();}
+
+// 3 cards
+function renderGrid(){const g=document.getElementById('vgrid');g.innerHTML='';V.forEach((o,i)=>{const d=document.createElement('div');d.className='vc'+(S.seen[i]?' seen':'');d.innerHTML=`<div class="em">${o.e}</div><div class="es">${o.v}</div><div class="ru">${o.ru}</div>`;d.onclick=()=>card(i);g.appendChild(d);});
+document.getElementById('seenC').textContent=Object.keys(S.seen).length;if(Object.keys(S.seen).length>=10)mark(2);}
+function card(i){const o=V[i];S.seen[i]=1;save();
+document.getElementById('mbody').innerHTML=`<div style="font-size:3rem;text-align:center">${o.e}</div><h2 style="text-align:center;margin:0">${o.v} <button class="btn sm sec" onclick="speak('${o.v}')">🔊</button></h2><p style="text-align:center;margin:2px 0">${o.ru} ${o.t?'<span class="pill">👢 '+o.t+'</span>':''}</p>
+<p><b>${o.ex}</b> <button class="btn sm ghost" onclick="speak('${o.ex}')">🔊</button></p>
+<table class="conj">${PER.map((p,k)=>`<tr><td>${p}</td><td><span class="pr">${RP[k]}</span> ${o.f[k]}${o.v.includes('dientes')?' los dientes':''}</td></tr>`).join('')}</table>
+<p class="muted">Скажи вслух: <b>${full(o,0)}</b>, <b>${full(o,1)}</b>, <b>${full(o,2)}</b>, и покажи действие руками!</p>
+<div style="text-align:right"><button class="btn" onclick="closeM()">Готово ✓</button></div>`;document.getElementById('modal').classList.add('on');}
+function closeM(){document.getElementById('modal').classList.remove('on');renderGrid();}
+document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')closeM();};
+
+// 4 memory
+let memOpen=[],memDone=0,memMoves=0,memLock=false;
+function startMem(){const pick=V.slice().sort(()=>Math.random()-.5).slice(0,6);const cards=[];pick.forEach((o,i)=>{cards.push({k:i,h:`<span class="em">${o.e}</span>`});cards.push({k:i,h:full(o,0),say:full(o,0)});});
+cards.sort(()=>Math.random()-.5);memOpen=[];memDone=0;memMoves=0;const m=document.getElementById('mem');m.innerHTML='';document.getElementById('memfb').className='fb';
+cards.forEach(c=>{const d=document.createElement('div');d.className='c';d.textContent='?';d.onclick=()=>{if(memLock||d.classList.contains('open')||d.classList.contains('done'))return;d.classList.add('open');d.innerHTML=c.h;if(c.say)speak(c.say);memOpen.push([d,c]);
+if(memOpen.length===2){memMoves++;const [a,b]=memOpen;if(a[1].k===b[1].k){a[0].className=b[0].className='c done';memOpen=[];memDone++;if(memDone===6){S.sc.memoria=memMoves+' ходов';const fb=document.getElementById('memfb');fb.className='fb on ok';fb.textContent='🎉 Все пары найдены за '+memMoves+' ходов!';addXP(10);mark(3);save();}}
+else{memLock=true;setTimeout(()=>{[a,b].forEach(x=>{x[0].className='c';x[0].textContent='?';});memOpen=[];memLock=false;},1100);}}};m.appendChild(d);});}
+
+// 5 order
+const ORD=['me despierto','me levanto','me ducho','me seco','me visto','me peino','me lavo los dientes','me acuesto'];
+let oPicked=[];const OSH=ORD.slice().sort(()=>Math.random()-.5);
+function renderOrder(){const pool=document.getElementById('opool');pool.innerHTML='';OSH.forEach(t=>{if(oPicked.includes(t))return;const c=document.createElement('span');c.className='chip';c.textContent=t;c.onclick=()=>{oPicked.push(t);speak(t);renderOrder();};pool.appendChild(c);});
+document.getElementById('oslots').innerHTML=ORD.map((_,i)=>`<div class="slot ${oPicked[i]?'fill':''}" id="os${i}"><span class="n">${i+1}</span>${oPicked[i]||''}</div>`).join('');}
+function resetOrder(){oPicked=[];renderOrder();document.getElementById('ofb').className='fb';}
+function checkOrder(){const fb=document.getElementById('ofb');if(oPicked.length<ORD.length){fb.className='fb on warn';fb.textContent='Расставь все фразы.';return;}
+const ix=t=>oPicked.indexOf(t);const errs=[];
+if(ix('me despierto')!==0)errs.push('День начинается с <b>me despierto</b> (просыпаюсь).');
+if(ix('me levanto')!==1)errs.push('Сначала просыпаюсь, потом <b>me levanto</b> (встаю).');
+if(ix('me ducho')>ix('me seco'))errs.push('Сначала <b>me ducho</b>, потом <b>me seco</b>.');
+if(ix('me seco')>ix('me visto'))errs.push('Сначала вытираюсь, потом <b>me visto</b>.');
+if(ix('me acuesto')!==7)errs.push('<b>Me acuesto</b> (ложусь спать) — это в конце дня!');
+S.sc.orden=errs.length?'с ошибками':'верно';
+if(!errs.length){fb.className='fb on ok';fb.innerHTML='🎉 ¡Muy bien! Теперь прочитай всё утро вслух по порядку.';document.querySelectorAll('.order .slot').forEach(s=>s.classList.add('ok'));addXP(10);mark(4);}
+else{fb.className='fb on bad';fb.innerHTML=errs.join('<br>');}save();}
+
+// 6 gaps
+const G=[['Yo ___ llamo Iván.','me'],['¿Cómo ___ llamas?','te'],['Mi madre ___ levanta a las seis.','se'],['Nosotros ___ duchamos por la mañana.','nos'],['¿Vosotros ___ acostáis tarde?','os'],['Mis hermanos ___ visten muy rápido.','se'],['Yo ___ lavo el coche de mi padre.','—'],['Yo ___ lavo las manos.','me'],['Tú ___ despiertas tarde.','te'],['Yo ___ baño a mi perro.','—']];
+let gA={};
+function renderGaps(){document.getElementById('gaps').innerHTML=G.map((g,i)=>`<div class="gap"><div class="s"><b>${i+1}.</b> ${g[0].replace('___','<b style="color:var(--terra)">___</b>')}</div><div class="opts">${['me','te','se','nos','os','—'].map(o=>`<span class="chip" onclick="ansG(${i},'${o}',this)">${o}</span>`).join('')}</div></div>`).join('');}
+function ansG(i,o,el){if(gA[i]!=null)return;const ok=o===G[i][1];gA[i]=ok;el.classList.add(ok?'ok':'bad');
+if(!ok)[...el.parentNode.children].find(c=>c.textContent===G[i][1]).classList.add('ok');else addXP(1);
+const said=G[i][0].replace('___',G[i][1]==='—'?'':G[i][1]).replace(/\s+/g,' ');speak(said);
+if(Object.keys(gA).length===G.length){const c=Object.values(gA).filter(Boolean).length;S.sc.huecos=c+'/'+G.length;const fb=document.getElementById('gfb');fb.className='fb on '+(c>=8?'ok':'warn');
+fb.innerHTML=`Результат: <b>${c}/${G.length}</b>. ${c<G.length?'Посмотри на зелёные ответы. Предложения 7 и 10 — ловушки: машину и собаку мою не себя!':'¡Fenomenal!'}`;mark(5);save();}}
+
+// 7 text
+const FORMS={};V.forEach(o=>o.f.forEach((f,k)=>{FORMS[RP[k]+' '+strip(f)]=o.v;}));
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function analyze(){const t=document.getElementById('txt').value;S.text=t;save();const found=new Set();
+const html=esc(t).replace(/\b(me|te|se|nos|os)\s+([A-Za-zÁÉÍÓÚÑáéíóúñ]+)/gi,(m,a,b)=>{const v=FORMS[a.toLowerCase()+' '+strip(b)];if(v){found.add(v);return '<mark>'+m+'</mark>';}return m;});
+document.getElementById('prev').innerHTML=html||'<span class="muted">Здесь появится твой текст</span>';const vc=document.getElementById('vcnt');vc.textContent='Глаголов: '+found.size+' / 4 '+(found.size?'('+[...found].join(', ')+')':'');vc.className=found.size>=4?'okc':'no';
+if(found.size>=4&&!S.done[6]){mark(6);toast('🎉 Готово! +15 XP');}return [...found];}
+document.getElementById('txt').addEventListener('input',analyze);
+function buildReport(copy){const f=analyze();const r=`🪞 Разминка «Verbos reflexivos» — Иван
+Шаги: ${Object.keys(S.done).length}/7 · ⭐ ${S.xp} XP
+Зеркало (на себя / на другого): ${S.sc.espejo||'—'}
+Цепочка me-te-se: ${S.sc.cadena||'—'} · ритм ×${S.beat}
+Карточки открыты: ${Object.keys(S.seen).length}/10
+Мемори: ${S.sc.memoria||'—'} · Порядок утра: ${S.sc.orden||'—'}
+me/te/se или ничего: ${S.sc.huecos||'—'}
+
+✍️ Моё утро (глаголы: ${f.join(', ')||'—'}):
+${S.text||'—'}`;document.getElementById('report').textContent=r;
+if(copy){try{navigator.clipboard.writeText(r).then(()=>toast('📋 Скопировано!'),()=>toast('Выдели текст и скопируй вручную'));}catch(e){toast('Выдели текст и скопируй вручную');}}return r;}
+const TG_TOKEN='8753603224:AAEqPs0LuyK1SuF0K2hQWj2Sdf9IvKOSXK8',TG_CHAT='396389345';
+async function sendReport(){const txt=buildReport(false);const b=document.getElementById('sendBtn');b.disabled=true;b.textContent='Отправляю…';
+try{const r=await fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT,text:txt.slice(0,4000)})});const j=await r.json();if(!j.ok)throw 0;
+b.textContent='✅ Отправлено!';toast('📩 Отчёт отправлен!');addXP(5);setTimeout(()=>{b.disabled=false;b.textContent='📩 Отправить ещё раз';},4000);}
+catch(e){b.disabled=false;b.textContent='📩 Отправить учителю';toast('Не получилось. Нажми «Скопировать»');}}
+
+// init
+document.getElementById('xp').textContent='⭐ '+S.xp+' XP';document.getElementById('txt').value=S.text||'';
+renderMQ();renderChain();renderGrid();startMem();renderOrder();renderGaps();analyze();go(S.step||0);
+</script>
+</body>
+</html>
